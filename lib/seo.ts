@@ -52,6 +52,55 @@ export function productJsonLd(product: Product) {
   };
 }
 
+export function blogPostingJsonLd(post: {
+  slug: string;
+  title: string;
+  description: string;
+  author: string;
+  publishedAt: string;
+  updatedAt: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    url: `${SITE_URL}/blog/${post.slug}`,
+    image: `${SITE_URL}${OG_DEFAULT_IMAGE}`,
+    author: {
+      "@type": "Person",
+      name: post.author,
+      jobTitle: "Co-founder, SkinSnap",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "SkinSnap",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/apple-icon.png`,
+      },
+    },
+  };
+}
+
+export function faqJsonLd(faq: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+}
+
 /** Renders a JSON-LD object as the string body of a <script> tag. */
 export function jsonLdString(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");

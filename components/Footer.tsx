@@ -49,6 +49,7 @@ export default function Footer() {
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <Link href="/products" style={linkStyle}>Products</Link>
             <Link href="/how-it-works" style={linkStyle}>How It Works</Link>
+            <Link href="/blog" style={linkStyle}>Blog</Link>
             <Link href="/contact" style={linkStyle}>Contact</Link>
           </div>
         </div>
