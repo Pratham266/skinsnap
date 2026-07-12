@@ -163,10 +163,16 @@ export default function ProductDetail({
               </div>
               <h1 className="section-title h-lg" style={{ fontSize: 46, lineHeight: 1.05, margin: 0 }}>{product.title} Face Pack</h1>
               <p style={{ fontSize: 16, color: "#6B6357", lineHeight: 1.65, margin: "18px 0 24px" }}>{product.long}</p>
-              <div style={{ fontSize: 30, fontWeight: 700, marginBottom: 28 }}>
-                {formatINR(product.priceNum * qty)}{" "}
-                <span style={{ fontSize: 15, fontWeight: 500, color: "#9B8F7C" }}>
-                  {qty > 1 ? `/ ${qty} pouches` : "/ single-use pouch"}
+              <div style={{ marginBottom: 28 }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
+                  <span style={{ fontSize: 30, fontWeight: 700 }}>{formatINR(product.priceNum * qty)}</span>
+                  <span style={{ fontSize: 18, color: "#9B8F7C", textDecoration: "line-through" }}>{formatINR(product.mrpNum * qty)}</span>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#5E7C4E", background: "#EAF1E4", borderRadius: 999, padding: "4px 11px" }}>
+                    Save {formatINR((product.mrpNum - product.priceNum) * qty)}
+                  </span>
+                </div>
+                <span style={{ fontSize: 14, fontWeight: 500, color: "#9B8F7C" }}>
+                  {qty > 1 ? `for ${qty} pouches` : "/ single-use pouch"}
                 </span>
               </div>
 

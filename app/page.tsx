@@ -30,7 +30,7 @@ export default function HomePage() {
     if (autoRef.current) clearInterval(autoRef.current);
     autoRef.current = setInterval(
       () => setSlide((s) => (s + 1) % products.length),
-      3500
+      3500,
     );
   };
 
@@ -46,7 +46,9 @@ export default function HomePage() {
   // and then jumps to the animation's start state.
   useIsoLayoutEffect(() => {
     if (typeof window === "undefined") return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (reduce || !heroContentRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(heroContentRef.current!.querySelectorAll("[data-hero]"), {
@@ -64,7 +66,9 @@ export default function HomePage() {
   // petals + parallax
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (reduce) return;
     gsap.registerPlugin(ScrollTrigger);
 
@@ -142,35 +146,96 @@ export default function HomePage() {
       <section ref={heroRef} className="home-hero">
         <div
           ref={petalsRef}
-          style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 0,
+            pointerEvents: "none",
+            overflow: "hidden",
+          }}
         />
 
         {/* copy */}
         <div ref={heroContentRef} className="home-hero__copy">
-          <div data-hero style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase", color: "#A15E38" }}>
+          <div
+            data-hero
+            style={{
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              color: "#A15E38",
+            }}
+          >
             Freshly Activated · 100% Natural
           </div>
           <h1 data-hero className="home-hero__title">
-            Fresh Clay.<br />
+            Fresh Clay.
+            <br />
             <em style={{ color: "#B97C79" }}>Zero Mess.</em>
           </h1>
-          <p data-hero style={{ fontSize: 18, color: "#5A5348", maxWidth: 440, margin: "26px 0 0", lineHeight: 1.6 }}>
+          <p
+            data-hero
+            style={{
+              fontSize: 18,
+              color: "#5A5348",
+              maxWidth: 440,
+              margin: "26px 0 0",
+              lineHeight: 1.6,
+            }}
+          >
             Freshly Activated Natural Face Packs, designed for modern skincare.
           </p>
-          <div data-hero className="hero-cta" style={{ display: "flex", gap: 16, marginTop: 38, flexWrap: "wrap" }}>
+          <div
+            data-hero
+            className="hero-cta"
+            style={{
+              display: "flex",
+              gap: 16,
+              marginTop: 38,
+              flexWrap: "wrap",
+            }}
+          >
             <Link
               href="/products"
-              style={{ background: "#26221C", color: "#F6F1E9", borderRadius: 999, padding: "16px 36px", fontWeight: 700, fontSize: 15, textDecoration: "none", boxShadow: "0 16px 30px -14px rgba(38,34,28,0.5)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "#A15E38")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "#26221C")}
+              style={{
+                background: "#26221C",
+                color: "#F6F1E9",
+                borderRadius: 999,
+                padding: "16px 36px",
+                fontWeight: 700,
+                fontSize: 15,
+                textDecoration: "none",
+                boxShadow: "0 16px 30px -14px rgba(38,34,28,0.5)",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#A15E38")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "#26221C")
+              }
             >
               Shop Now
             </Link>
             <Link
               href="/how-it-works"
-              style={{ background: "rgba(255,255,255,0.6)", color: "#26221C", border: "1px solid #D7CCBB", borderRadius: 999, padding: "16px 36px", fontWeight: 600, fontSize: 15, textDecoration: "none", backdropFilter: "blur(8px)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#26221C")}
-              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#D7CCBB")}
+              style={{
+                background: "rgba(255,255,255,0.6)",
+                color: "#26221C",
+                border: "1px solid #D7CCBB",
+                borderRadius: 999,
+                padding: "16px 36px",
+                fontWeight: 600,
+                fontSize: 15,
+                textDecoration: "none",
+                backdropFilter: "blur(8px)",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.borderColor = "#26221C")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.borderColor = "#D7CCBB")
+              }
             >
               How It Works
             </Link>
@@ -209,7 +274,14 @@ export default function HomePage() {
               />
             ))}
           </div>
-          <div style={{ display: "flex", gap: 10, justifyContent: "center", marginTop: 22 }}>
+          <div
+            style={{
+              display: "flex",
+              gap: 10,
+              justifyContent: "center",
+              marginTop: 22,
+            }}
+          >
             {products.map((p, i) => (
               <button
                 key={p.slug}
@@ -235,20 +307,46 @@ export default function HomePage() {
       </section>
 
       {/* FEATURED PRODUCTS */}
-      <section className="section-pad" style={{ padding: "130px 48px", background: "#F6F1E9" }}>
+      <section
+        className="section-pad"
+        style={{ padding: "130px 48px", background: "#F6F1E9" }}
+      >
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div data-reveal style={{ textAlign: "center", marginBottom: 64 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: "#A15E38" }}>
+            <div
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                color: "#A15E38",
+              }}
+            >
               The Collection
             </div>
-            <h2 className="section-title h-xl" style={{ fontSize: 56, margin: "16px 0 0" }}>
+            <h2
+              className="section-title h-xl"
+              style={{ fontSize: 56, margin: "16px 0 0" }}
+            >
               One family. Four rituals.
             </h2>
-            <p style={{ fontSize: 16, color: "#6B6357", maxWidth: 520, margin: "18px auto 0", lineHeight: 1.6 }}>
-              Every pouch shares the same dual-chamber innovation — activated fresh, the moment you need it.
+            <p
+              style={{
+                fontSize: 16,
+                color: "#6B6357",
+                maxWidth: 520,
+                margin: "18px auto 0",
+                lineHeight: 1.6,
+              }}
+            >
+              Every pouch shares the same dual-chamber innovation — activated
+              fresh, the moment you need it.
             </p>
           </div>
-          <div className="grid-2" style={{ gap: 40, maxWidth: 920, margin: "0 auto" }}>
+          <div
+            className="grid-2"
+            style={{ gap: 40, maxWidth: 920, margin: "0 auto" }}
+          >
             {products.map((p) => (
               <div data-reveal key={p.slug} style={{ height: "100%" }}>
                 <ProductPouch product={p} />
@@ -259,39 +357,161 @@ export default function HomePage() {
       </section>
 
       {/* INNOVATION STRIP */}
-      <section className="section-pad" style={{ padding: "130px 48px", background: "#26221C", color: "#F6F1E9" }}>
-        <div className="innovation-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 70, alignItems: "center" }}>
+      <section
+        className="section-pad"
+        style={{
+          padding: "130px 48px",
+          background: "#26221C",
+          color: "#F6F1E9",
+        }}
+      >
+        <div
+          className="innovation-grid"
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 70,
+            alignItems: "center",
+          }}
+        >
           <div data-reveal>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.28em", textTransform: "uppercase", color: "#E8CBB2" }}>
+            <div
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: "0.28em",
+                textTransform: "uppercase",
+                color: "#E8CBB2",
+              }}
+            >
               The Innovation
             </div>
-            <h2 className="section-title h-lg" style={{ fontSize: 48, margin: "16px 0 20px", lineHeight: 1.1 }}>
-              Two ingredients.<br />One perfect press.
+            <h2
+              className="section-title h-lg"
+              style={{ fontSize: 48, margin: "16px 0 20px", lineHeight: 1.1 }}
+            >
+              Two ingredients.
+              <br />
+              One perfect press.
             </h2>
-            <p style={{ fontSize: 16, color: "#C9C1B3", lineHeight: 1.7, marginBottom: 32 }}>
-              A frangible burst seal keeps rose water and clay apart until the moment you press. No bowl, no spoon, no mess — just a freshly activated face pack, every single time.
+            <p
+              style={{
+                fontSize: 16,
+                color: "#C9C1B3",
+                lineHeight: 1.7,
+                marginBottom: 32,
+              }}
+            >
+              A frangible burst seal keeps rose water and clay apart until the
+              moment you press. No bowl, no spoon, no mess — just a freshly
+              activated face pack, every single time.
             </p>
             <Link
               href="/how-it-works"
-              style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "#E8CBB2", color: "#26221C", borderRadius: 999, padding: "15px 32px", fontWeight: 700, fontSize: 15, textDecoration: "none" }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "#F6F1E9")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "#E8CBB2")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                background: "#E8CBB2",
+                color: "#26221C",
+                borderRadius: 999,
+                padding: "15px 32px",
+                fontWeight: 700,
+                fontSize: 15,
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#F6F1E9")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "#E8CBB2")
+              }
             >
               See how it works →
             </Link>
           </div>
-          <div data-reveal style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width="100%" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
-              <rect x="30" y="50" width="360" height="160" rx="22" fill="#2C2620" stroke="#4A4238" strokeWidth="1.5" />
-              <line x1="210" y1="66" x2="210" y2="194" stroke="#B08A55" strokeWidth="2" strokeDasharray="3 7" />
-              <ellipse cx="120" cy="130" rx="60" ry="40" fill="#B97C79" opacity="0.55" />
+          <div
+            data-reveal
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <svg
+              width="100%"
+              viewBox="0 0 420 260"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="30"
+                y="50"
+                width="360"
+                height="160"
+                rx="22"
+                fill="#2C2620"
+                stroke="#4A4238"
+                strokeWidth="1.5"
+              />
+              <line
+                x1="210"
+                y1="66"
+                x2="210"
+                y2="194"
+                stroke="#B08A55"
+                strokeWidth="2"
+                strokeDasharray="3 7"
+              />
+              <ellipse
+                cx="120"
+                cy="130"
+                rx="60"
+                ry="40"
+                fill="#B97C79"
+                opacity="0.55"
+              />
               <circle cx="280" cy="120" r="6" fill="#E8CBB2" />
               <circle cx="300" cy="135" r="5" fill="#E8CBB2" />
               <circle cx="290" cy="150" r="4" fill="#E8CBB2" />
               <circle cx="315" cy="122" r="4" fill="#E8CBB2" />
-              <text x="120" y="180" textAnchor="middle" fontFamily="Manrope" fontSize="10" fontWeight="700" letterSpacing="1.5" fill="#F2DEDC">ROSE WATER</text>
-              <text x="300" y="180" textAnchor="middle" fontFamily="Manrope" fontSize="10" fontWeight="700" letterSpacing="1.5" fill="#E8CBB2">CLAY</text>
-              <text x="210" y="234" textAnchor="middle" fontFamily="Manrope" fontSize="9" fontWeight="700" letterSpacing="2" fill="#B08A55">FRANGIBLE BURST SEAL</text>
+              <text
+                x="120"
+                y="180"
+                textAnchor="middle"
+                fontFamily="Manrope"
+                fontSize="10"
+                fontWeight="700"
+                letterSpacing="1.5"
+                fill="#F2DEDC"
+              >
+                ROSE WATER
+              </text>
+              <text
+                x="300"
+                y="180"
+                textAnchor="middle"
+                fontFamily="Manrope"
+                fontSize="10"
+                fontWeight="700"
+                letterSpacing="1.5"
+                fill="#E8CBB2"
+              >
+                CLAY
+              </text>
+              <text
+                x="210"
+                y="234"
+                textAnchor="middle"
+                fontFamily="Manrope"
+                fontSize="9"
+                fontWeight="700"
+                letterSpacing="2"
+                fill="#B08A55"
+              >
+                FRANGIBLE BURST SEAL
+              </text>
             </svg>
           </div>
         </div>

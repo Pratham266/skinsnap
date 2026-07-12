@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { lockScroll, unlockScroll } from "@/lib/lenisControl";
 
 type Active = "home" | "products" | "how" | "contact";
 
@@ -12,6 +13,9 @@ const links: { label: string; href: string; key: Active }[] = [
   { label: "How It Works", href: "/how-it-works", key: "how" },
   { label: "Contact", href: "/contact", key: "contact" },
 ];
+
+/** Height of the promo banner that sits above the nav bar. */
+const BANNER_H = 40;
 
 export default function Nav({ active }: { active: Active }) {
   const [scrolled, setScrolled] = useState(false);
@@ -25,22 +29,58 @@ export default function Nav({ active }: { active: Active }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // lock body scroll when the mobile menu is open
+  // freeze page scroll (incl. Lenis) while the mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    if (!menuOpen) return;
+    lockScroll();
+    return () => unlockScroll();
   }, [menuOpen]);
 
   const color = (k: Active) => (active === k ? "#A15E38" : "#26221C");
 
   return (
+    <>
+    {/* PROMO BANNER — sits above the nav on every page */}
+    <Link
+      href="/product/combo-pack"
+      aria-label="Offer: 4-Pack Combo for just ₹99"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1001,
+        height: BANNER_H,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 8,
+        background: "linear-gradient(90deg,#A15E38 0%,#B97C79 100%)",
+        color: "#F6F1E9",
+        textDecoration: "none",
+        fontSize: "clamp(11px,3vw,13.5px)",
+        fontWeight: 600,
+        letterSpacing: "0.01em",
+        padding: "0 16px",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+      }}
+    >
+      <span aria-hidden="true">🎁</span>
+      <span>
+        4-Pack Combo Offer — all 4 rituals for just{" "}
+        <strong style={{ fontWeight: 800, color: "#FFF3E4" }}>₹99</strong>
+      </span>
+      <span aria-hidden="true" style={{ fontWeight: 800 }}>
+        Shop&nbsp;→
+      </span>
+    </Link>
+
     <nav
       className="nav-pad"
       style={{
         position: "fixed",
-        top: 0,
+        top: BANNER_H,
         left: 0,
         right: 0,
         zIndex: 1000,
@@ -132,7 +172,12 @@ export default function Nav({ active }: { active: Active }) {
           </button>
         </div>
       </div>
+    </nav>
 
+      {/* Full-screen mobile menu — rendered OUTSIDE <nav> so its
+          position:fixed resolves against the viewport, not the
+          backdrop-filtered nav bar (which would otherwise become its
+          containing block and clip it to the top strip). */}
       {menuOpen && (
         <div
           style={{
@@ -184,7 +229,7 @@ export default function Nav({ active }: { active: Active }) {
         </div>
       )}
 
-      <style jsx>{`
+      <style jsx global>{`
         .nav-links {
           display: flex;
         }
@@ -200,7 +245,7 @@ export default function Nav({ active }: { active: Active }) {
           }
         }
       `}</style>
-    </nav>
+    </>
   );
 }
 

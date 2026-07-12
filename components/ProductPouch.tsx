@@ -15,6 +15,7 @@ export default function ProductPouch({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
+  const isCombo = product.slug === "combo-pack";
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = e.currentTarget;
@@ -39,17 +40,20 @@ export default function ProductPouch({ product }: { product: Product }) {
   };
 
   return (
-    <div style={{ perspective: 1200, height: "100%" }}>
+    <div className={isCombo ? "combo-wrap" : undefined} style={{ perspective: 1200, height: "100%" }}>
       <div
+        className={isCombo ? "combo-card" : undefined}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
         style={{
-          background: "#FCFAF5",
-          border: "1px solid #EAE0D0",
+          background: isCombo ? "#FFFCF6" : "#FCFAF5",
+          border: isCombo ? "1px solid #E4C9A8" : "1px solid #EAE0D0",
           borderRadius: 24,
           padding: "16px 16px 22px",
           transition: "box-shadow 0.4s ease, transform 0.15s ease",
-          boxShadow: "0 14px 30px -22px rgba(38,34,28,0.35)",
+          boxShadow: isCombo
+            ? "0 22px 44px -24px rgba(161,94,56,0.45)"
+            : "0 14px 30px -22px rgba(38,34,28,0.35)",
           transformStyle: "preserve-3d",
           willChange: "transform",
           height: "100%",
@@ -61,6 +65,7 @@ export default function ProductPouch({ product }: { product: Product }) {
         <Link
           href={`/product/${product.slug}`}
           style={{
+            position: "relative",
             display: "block",
             borderRadius: 16,
             overflow: "hidden",
@@ -72,10 +77,37 @@ export default function ProductPouch({ product }: { product: Product }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={product.img}
-            alt={`${product.title} Face Pack`}
+            alt={isCombo ? "SkinSnap 4-Pack Face Pack Combo" : `${product.title} Face Pack`}
             loading="lazy"
             style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
           />
+          {isCombo && (
+            <>
+              <span className="combo-shine" />
+              <span
+                className="combo-ribbon"
+                style={{
+                  position: "absolute",
+                  top: 12,
+                  left: 12,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  background: "#26221C",
+                  color: "#F6F1E9",
+                  fontSize: 11,
+                  fontWeight: 800,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  padding: "7px 12px",
+                  borderRadius: 999,
+                  boxShadow: "0 8px 18px -8px rgba(38,34,28,0.6)",
+                }}
+              >
+                <span aria-hidden="true">🎁</span> Combo Offer · ₹99
+              </span>
+            </>
+          )}
         </Link>
 
         <div style={{ padding: "0 6px", display: "flex", flexDirection: "column", flex: 1 }}>
@@ -91,15 +123,23 @@ export default function ProductPouch({ product }: { product: Product }) {
             {product.desc}
           </div>
 
-          {/* price reflects quantity */}
-          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 14 }}>
-            <span style={{ fontSize: 19, fontWeight: 700, color: "#26221C" }}>
-              {formatINR(product.priceNum * qty)}
-            </span>
-            {qty > 1 && (
-              <span style={{ fontSize: 12, color: "#9B8F7C" }}>
-                ({qty} × {formatINR(product.priceNum)})
+          {/* price reflects quantity — offer price + struck MRP + savings */}
+          <div style={{ marginTop: 14 }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
+              <span style={{ fontSize: 20, fontWeight: 700, color: "#26221C" }}>
+                {formatINR(product.priceNum * qty)}
               </span>
+              <span style={{ fontSize: 14, color: "#9B8F7C", textDecoration: "line-through" }}>
+                {formatINR(product.mrpNum * qty)}
+              </span>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.02em", color: "#5E7C4E", background: "#EAF1E4", borderRadius: 999, padding: "3px 9px" }}>
+                Save {formatINR((product.mrpNum - product.priceNum) * qty)}
+              </span>
+            </div>
+            {qty > 1 && (
+              <div style={{ fontSize: 12, color: "#9B8F7C", marginTop: 4 }}>
+                {qty} × {formatINR(product.priceNum)}
+              </div>
             )}
           </div>
 

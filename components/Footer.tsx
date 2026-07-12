@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { InstagramIcon, WhatsappIcon } from "@/components/SocialIcons";
+import { INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/social";
 
 export default function Footer() {
   return (
@@ -34,10 +35,10 @@ export default function Footer() {
             Freshly activated natural face packs, engineered for modern skincare.
           </div>
           <div style={{ display: "flex", gap: 14, marginTop: 28 }}>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={socialStyle}>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={socialStyle}>
               <InstagramIcon size={17} />
             </a>
-            <a href="https://wa.me/14155550199" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style={socialStyle}>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style={socialStyle}>
               <WhatsappIcon size={17} />
             </a>
           </div>

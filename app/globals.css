@@ -40,6 +40,109 @@ textarea::placeholder {
   color: #a99e8b;
 }
 
+/* ---- Combo offer card showcase animations ---- */
+.combo-wrap {
+  position: relative;
+  animation: combo-float 5.5s ease-in-out infinite;
+}
+/* animated glowing halo behind the combo card */
+.combo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 28px;
+  background: linear-gradient(120deg, #e8cbb2, #b97c79, #a15e38, #e8cbb2);
+  background-size: 300% 300%;
+  filter: blur(15px);
+  opacity: 0.5;
+  z-index: 0;
+  animation: combo-gradient 6s linear infinite, combo-pulse 3.2s ease-in-out infinite;
+}
+.combo-card {
+  position: relative;
+  z-index: 1;
+}
+/* diagonal sheen that sweeps across the combo image */
+.combo-shine {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  pointer-events: none;
+}
+.combo-shine::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -30%;
+  width: 40%;
+  height: 220%;
+  transform: rotate(18deg);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: combo-sheen 3.6s ease-in-out infinite;
+}
+/* floating "₹99" offer ribbon */
+.combo-ribbon {
+  animation: combo-badge-pop 3s ease-in-out infinite;
+}
+@keyframes combo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@keyframes combo-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+@keyframes combo-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+@keyframes combo-sheen {
+  0% {
+    left: -40%;
+  }
+  60%,
+  100% {
+    left: 130%;
+  }
+}
+@keyframes combo-badge-pop {
+  0%,
+  100% {
+    transform: scale(1) rotate(-4deg);
+  }
+  50% {
+    transform: scale(1.07) rotate(-4deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .combo-wrap,
+  .combo-wrap::before,
+  .combo-shine::after,
+  .combo-ribbon {
+    animation: none;
+  }
+}
+
 /* Modal / overlay animations (shared by cart + checkout) */
 @keyframes ss-fade {
   from {
