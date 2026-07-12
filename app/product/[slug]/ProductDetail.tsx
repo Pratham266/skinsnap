@@ -95,7 +95,7 @@ export default function ProductDetail({
     borderRadius: 16,
     padding: 16,
     cursor: "pointer",
-    fontFamily: "'Manrope',sans-serif",
+    fontFamily: "var(--font-manrope), sans-serif",
     fontSize: 12,
     fontWeight: 700,
     letterSpacing: "1px",
@@ -188,13 +188,13 @@ export default function ProductDetail({
               <div style={{ display: "flex", gap: 12 }}>
                 <button
                   onClick={addToCart}
-                  style={{ flex: 1, background: added ? "#5E7C4E" : "transparent", color: added ? "#F6F1E9" : "#26221C", border: `1px solid ${added ? "#5E7C4E" : "#26221C"}`, borderRadius: 999, padding: "17px 0", fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all 0.25s ease" }}
+                  style={{ flex: 1, background: added ? "#5E7C4E" : "transparent", color: added ? "#F6F1E9" : "#26221C", border: `1px solid ${added ? "#5E7C4E" : "#26221C"}`, borderRadius: 999, padding: "17px 0", fontFamily: "var(--font-manrope), sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all 0.25s ease" }}
                 >
                   {added ? "Added ✓" : "Add to Cart"}
                 </button>
                 <button
                   onClick={buy}
-                  style={{ flex: 1, background: "#26221C", color: "#F6F1E9", border: "1px solid #26221C", borderRadius: 999, padding: "17px 0", fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", boxShadow: "0 16px 30px -14px rgba(38,34,28,0.5)", transition: "background 0.25s ease" }}
+                  style={{ flex: 1, background: "#26221C", color: "#F6F1E9", border: "1px solid #26221C", borderRadius: 999, padding: "17px 0", fontFamily: "var(--font-manrope), sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", boxShadow: "0 16px 30px -14px rgba(38,34,28,0.5)", transition: "background 0.25s ease" }}
                   onMouseEnter={(e) => (e.currentTarget.style.background = "#A15E38")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "#26221C")}
                 >
@@ -351,5 +351,5 @@ const qtyBtn: React.CSSProperties = {
   padding: "12px 18px",
   fontSize: 18,
   color: "#26221C",
-  fontFamily: "'Manrope',sans-serif",
+  fontFamily: "var(--font-manrope), sans-serif",
 };

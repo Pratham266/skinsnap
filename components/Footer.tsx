@@ -25,10 +25,10 @@ export default function Footer() {
         }}
       >
         <div>
-          <div style={{ fontFamily: "'Instrument Serif',serif", fontSize: 34, letterSpacing: "0.03em" }}>
+          <div style={{ fontFamily: "var(--font-instrument-serif), serif", fontSize: 34, letterSpacing: "0.03em" }}>
             SKINSNAP
           </div>
-          <div style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", fontSize: 18, color: "#E8CBB2", marginTop: 10 }}>
+          <div style={{ fontFamily: "var(--font-instrument-serif), serif", fontStyle: "italic", fontSize: 18, color: "#E8CBB2", marginTop: 10 }}>
             Fresh Clay. Zero Mess.
           </div>
           <div style={{ fontSize: 13, color: "#9B927F", marginTop: 16, maxWidth: 280, lineHeight: 1.6 }}>

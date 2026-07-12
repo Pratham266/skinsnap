@@ -98,7 +98,7 @@ export default function Nav({ active }: { active: Active }) {
       <Link
         href="/"
         style={{
-          fontFamily: "'Instrument Serif',serif",
+          fontFamily: "var(--font-instrument-serif), serif",
           fontSize: 26,
           letterSpacing: "0.04em",
           color: "#26221C",
@@ -216,7 +216,7 @@ export default function Nav({ active }: { active: Active }) {
               href={l.href}
               onClick={() => setMenuOpen(false)}
               style={{
-                fontFamily: "'Instrument Serif',serif",
+                fontFamily: "var(--font-instrument-serif), serif",
                 fontSize: 40,
                 color: "#26221C",
                 textDecoration: "none",

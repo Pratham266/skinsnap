@@ -113,7 +113,7 @@ export default function ProductPouch({ product }: { product: Product }) {
 
         <div style={{ padding: "0 6px", display: "flex", flexDirection: "column", flex: 1 }}>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginTop: 18, gap: 12 }}>
-            <div style={{ fontFamily: "'Instrument Serif',serif", fontSize: 22, color: "#26221C", lineHeight: 1.1 }}>
+            <div style={{ fontFamily: "var(--font-instrument-serif), serif", fontSize: 22, color: "#26221C", lineHeight: 1.1 }}>
               {product.title}
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: product.tone, whiteSpace: "nowrap" }}>
@@ -164,7 +164,7 @@ export default function ProductPouch({ product }: { product: Product }) {
                 fontSize: 13,
                 border: "none",
                 cursor: "pointer",
-                fontFamily: "'Manrope',sans-serif",
+                fontFamily: "var(--font-manrope), sans-serif",
                 transition: "background 0.25s ease",
                 whiteSpace: "nowrap",
               }}
@@ -210,5 +210,5 @@ const stepBtn: React.CSSProperties = {
   padding: "8px 12px",
   fontSize: 15,
   color: "#26221C",
-  fontFamily: "'Manrope',sans-serif",
+  fontFamily: "var(--font-manrope), sans-serif",
 };

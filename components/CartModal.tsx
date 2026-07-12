@@ -58,7 +58,7 @@ export default function CartModal({
           maxWidth: 440,
           height: "100%",
           background: "#FCFAF5",
-          fontFamily: "'Manrope',sans-serif",
+          fontFamily: "var(--font-manrope), sans-serif",
           display: "flex",
           flexDirection: "column",
           boxShadow: "-30px 0 90px -30px rgba(38,34,28,0.5)",
@@ -76,7 +76,7 @@ export default function CartModal({
           }}
         >
           <div>
-            <div style={{ fontFamily: "'Instrument Serif',serif", fontSize: 26 }}>
+            <div style={{ fontFamily: "var(--font-instrument-serif), serif", fontSize: 26 }}>
               Your Cart
             </div>
             <div style={{ fontSize: 13, color: "#9B8F7C", marginTop: 2 }}>
@@ -111,7 +111,7 @@ export default function CartModal({
                 <path d="M9 8a3 3 0 0 1 6 0" strokeLinecap="round" />
               </svg>
             </div>
-            <div style={{ fontFamily: "'Instrument Serif',serif", fontSize: 22, color: "#26221C", marginBottom: 6 }}>
+            <div style={{ fontFamily: "var(--font-instrument-serif), serif", fontSize: 22, color: "#26221C", marginBottom: 6 }}>
               Your cart is empty
             </div>
             <div style={{ fontSize: 14, lineHeight: 1.6 }}>
@@ -200,7 +200,7 @@ export default function CartModal({
               </div>
               <button
                 onClick={onClose}
-                style={{ width: "100%", background: "none", border: "none", cursor: "pointer", color: "#6B6357", fontSize: 13, fontFamily: "'Manrope',sans-serif", marginTop: 10, textDecoration: "underline" }}
+                style={{ width: "100%", background: "none", border: "none", cursor: "pointer", color: "#6B6357", fontSize: 13, fontFamily: "var(--font-manrope), sans-serif", marginTop: 10, textDecoration: "underline" }}
               >
                 Continue shopping
               </button>
@@ -241,7 +241,7 @@ const stepBtn: React.CSSProperties = {
   padding: "6px 12px",
   fontSize: 15,
   color: "#26221C",
-  fontFamily: "'Manrope',sans-serif",
+  fontFamily: "var(--font-manrope), sans-serif",
 };
 
 const primaryBtn: React.CSSProperties = {
@@ -251,7 +251,7 @@ const primaryBtn: React.CSSProperties = {
   border: "none",
   borderRadius: 999,
   padding: "15px 0",
-  fontFamily: "'Manrope',sans-serif",
+  fontFamily: "var(--font-manrope), sans-serif",
   fontWeight: 700,
   fontSize: 15,
   cursor: "pointer",
