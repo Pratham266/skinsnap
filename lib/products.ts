@@ -1,6 +1,13 @@
+import type { StaticImageData } from "next/image";
+import imgCombo from "@/public/assets/pack-combo.webp";
+import imgMultaniMitti from "@/public/assets/pack-multani-mitti.webp";
+import imgOrangePeel from "@/public/assets/pack-orange-peel.webp";
+import imgDeTan from "@/public/assets/pack-de-tan.webp";
+import imgKoreanGlow from "@/public/assets/pack-korean-glow.webp";
+
 export type Product = {
   slug: string;
-  img: string;
+  img: StaticImageData;
   title: string;
   desc: string;
   price: string;
@@ -15,10 +22,21 @@ export type Product = {
   ingredients: { name: string; body: string; bg: string; color: string }[];
 };
 
+/**
+ * TODO: visit again when adding products
+ * Customer-facing product name. Avoids the "Combo Pack Face Pack" artifact
+ * that blind `${title} Face Pack` templating produces for the combo.
+ */
+export function productDisplayName(p: Pick<Product, "slug" | "title">) {
+  return p.slug === "combo-pack"
+    ? "4-in-1 Face Pack Combo"
+    : `${p.title} Face Pack`;
+}
+
 export const products: Product[] = [
   {
     slug: "combo-pack",
-    img: "/assets/pack-combo.png",
+    img: imgCombo,
     title: "Combo Pack",
     desc: "4 freshly activated face packs for every skincare need at an unbeatable price.",
     price: "₹99",
@@ -45,7 +63,7 @@ export const products: Product[] = [
   },
   {
     slug: "multani-mitti",
-    img: "/assets/pack-multani-mitti.png",
+    img: imgMultaniMitti,
     title: "Multani Mitti",
     desc: "Oil control, deep clean & detox with mineral-rich clay.",
     price: "₹29",
@@ -72,7 +90,7 @@ export const products: Product[] = [
   },
   {
     slug: "orange-peel",
-    img: "/assets/pack-orange-peel.png",
+    img: imgOrangePeel,
     title: "Orange Peel",
     desc: "Tan removal & brightening for a natural, even glow.",
     price: "₹29",
@@ -99,7 +117,7 @@ export const products: Product[] = [
   },
   {
     slug: "de-tan",
-    img: "/assets/pack-de-tan.png",
+    img: imgDeTan,
     title: "De-Tan",
     desc: "Turmeric & clay that lift tan and even skin tone.",
     price: "₹29",
@@ -126,7 +144,7 @@ export const products: Product[] = [
   },
   {
     slug: "korean-glow",
-    img: "/assets/pack-korean-glow.png",
+    img: imgKoreanGlow,
     title: "Korean Glow",
     desc: "Rice, clay & oat for glass-skin softness.",
     price: "₹29",

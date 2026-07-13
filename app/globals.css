@@ -19,7 +19,7 @@ body {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: "Manrope", system-ui, sans-serif;
+  font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -197,7 +197,7 @@ textarea::placeholder {
   justify-self: end;
 }
 .home-hero__title {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-instrument-serif), "Instrument Serif", serif;
   font-weight: 400;
   font-size: 92px;
   line-height: 0.98;
@@ -214,8 +214,14 @@ textarea::placeholder {
 }
 
 .section-title {
-  font-family: "Instrument Serif", serif;
+  font-family: var(--font-instrument-serif), "Instrument Serif", serif;
   font-weight: 400;
+}
+
+/* SVG labels (pouch diagrams) declare font-family="Manrope" as a presentation
+   attribute; this rule wins over it and maps them to the loaded font. */
+svg text {
+  font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
 }
 
 .grid-2 {
@@ -282,6 +288,18 @@ textarea::placeholder {
   .section-pad {
     padding-left: 22px !important;
     padding-right: 22px !important;
+  }
+  /* blog product CTA card: image+text row, button drops to its own full-width line */
+  .product-cta {
+    flex-wrap: wrap;
+    gap: 14px !important;
+  }
+  .product-cta__btn {
+    width: 100%;
+    text-align: center;
+  }
+  .blog-card {
+    padding: 24px 20px !important;
   }
   .grid-2,
   .grid-3,

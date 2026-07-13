@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -10,7 +11,7 @@ import ProductPouch from "@/components/ProductPouch";
 import { useReveals } from "@/lib/useReveals";
 import { useCart } from "@/context/CartContext";
 import { formatINR } from "@/lib/format";
-import type { Product } from "@/lib/products";
+import { productDisplayName, type Product } from "@/lib/products";
 
 const reviews = [
   { text: '"The freshest my clay mask has ever felt. Genuinely no mess — I use it on flights now."', name: "Priya M.", meta: "Verified · Combination skin" },
@@ -94,7 +95,7 @@ export default function ProductDetail({
     borderRadius: 16,
     padding: 16,
     cursor: "pointer",
-    fontFamily: "'Manrope',sans-serif",
+    fontFamily: "var(--font-manrope), sans-serif",
     fontSize: 12,
     fontWeight: 700,
     letterSpacing: "1px",
@@ -111,15 +112,14 @@ export default function ProductDetail({
           <div style={{ fontSize: 13, color: "#9B8F7C", marginBottom: 32 }}>
             <Link href="/products" style={{ textDecoration: "none", color: "#9B8F7C" }}>Products</Link>
             &nbsp;/&nbsp;
-            <span style={{ color: "#6B6357" }}>{product.title} Face Pack</span>
+            <span style={{ color: "#6B6357" }}>{productDisplayName(product)}</span>
           </div>
           <div className="detail-grid" style={{ display: "grid", gridTemplateColumns: "1.15fr 1fr", gap: 60, alignItems: "start" }}>
             {/* GALLERY */}
             <div>
               <div ref={galleryRef} style={{ background: "#F3ECDF", borderRadius: 28, padding: 40, display: "flex", alignItems: "center", justifyContent: "center", minHeight: 440 }}>
                 {view === "front" && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={product.img} alt={`${product.title} Face Pack`} style={{ width: "100%", height: "auto", borderRadius: 16, display: "block", filter: "drop-shadow(0 30px 40px rgba(120,80,60,0.18))" }} />
+                  <Image src={product.img} alt={productDisplayName(product)} priority sizes="(max-width: 900px) 92vw, 640px" style={{ width: "100%", height: "auto", borderRadius: 16, display: "block", filter: "drop-shadow(0 30px 40px rgba(120,80,60,0.18))" }} />
                 )}
                 {view === "transparent" && (
                   <svg width="100%" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
@@ -161,7 +161,7 @@ export default function ProductDetail({
                 </div>
                 <span style={{ fontSize: 13, color: "#6B6357" }}>4.9 · 312 reviews</span>
               </div>
-              <h1 className="section-title h-lg" style={{ fontSize: 46, lineHeight: 1.05, margin: 0 }}>{product.title} Face Pack</h1>
+              <h1 className="section-title h-lg" style={{ fontSize: 46, lineHeight: 1.05, margin: 0 }}>{productDisplayName(product)}</h1>
               <p style={{ fontSize: 16, color: "#6B6357", lineHeight: 1.65, margin: "18px 0 24px" }}>{product.long}</p>
               <div style={{ marginBottom: 28 }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
@@ -188,13 +188,13 @@ export default function ProductDetail({
               <div style={{ display: "flex", gap: 12 }}>
                 <button
                   onClick={addToCart}
-                  style={{ flex: 1, background: added ? "#5E7C4E" : "transparent", color: added ? "#F6F1E9" : "#26221C", border: `1px solid ${added ? "#5E7C4E" : "#26221C"}`, borderRadius: 999, padding: "17px 0", fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all 0.25s ease" }}
+                  style={{ flex: 1, background: added ? "#5E7C4E" : "transparent", color: added ? "#F6F1E9" : "#26221C", border: `1px solid ${added ? "#5E7C4E" : "#26221C"}`, borderRadius: 999, padding: "17px 0", fontFamily: "var(--font-manrope), sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all 0.25s ease" }}
                 >
                   {added ? "Added ✓" : "Add to Cart"}
                 </button>
                 <button
                   onClick={buy}
-                  style={{ flex: 1, background: "#26221C", color: "#F6F1E9", border: "1px solid #26221C", borderRadius: 999, padding: "17px 0", fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", boxShadow: "0 16px 30px -14px rgba(38,34,28,0.5)", transition: "background 0.25s ease" }}
+                  style={{ flex: 1, background: "#26221C", color: "#F6F1E9", border: "1px solid #26221C", borderRadius: 999, padding: "17px 0", fontFamily: "var(--font-manrope), sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", boxShadow: "0 16px 30px -14px rgba(38,34,28,0.5)", transition: "background 0.25s ease" }}
                   onMouseEnter={(e) => (e.currentTarget.style.background = "#A15E38")}
                   onMouseLeave={(e) => (e.currentTarget.style.background = "#26221C")}
                 >
@@ -308,11 +308,10 @@ export default function ProductDetail({
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
             <div style={{ width: 44, height: 44, borderRadius: 12, background: "#F3ECDF", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={product.img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <Image src={product.img} alt="" width={44} height={44} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
             <div className="detail-bar-title">
-              <div style={{ fontWeight: 700, fontSize: 15 }}>{product.title} Face Pack</div>
+              <div style={{ fontWeight: 700, fontSize: 15 }}>{productDisplayName(product)}</div>
               <div style={{ fontSize: 13, color: "#6B6357" }}>{product.price} / pouch</div>
             </div>
           </div>
@@ -352,5 +351,5 @@ const qtyBtn: React.CSSProperties = {
   padding: "12px 18px",
   fontSize: 18,
   color: "#26221C",
-  fontFamily: "'Manrope',sans-serif",
+  fontFamily: "var(--font-manrope), sans-serif",
 };

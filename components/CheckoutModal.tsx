@@ -122,7 +122,7 @@ export default function CheckoutModal({
           border: "1px solid #EAE0D0",
           borderRadius: 24,
           padding: 32,
-          fontFamily: "'Manrope',sans-serif",
+          fontFamily: "var(--font-manrope), sans-serif",
           boxShadow: "0 40px 90px -30px rgba(38,34,28,0.55)",
           animation: "ss-pop 0.3s cubic-bezier(0.16,1,0.3,1)",
           position: "relative",
@@ -142,7 +142,7 @@ export default function CheckoutModal({
                 <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <h3 style={{ fontFamily: "'Instrument Serif',serif", fontWeight: 400, fontSize: 32, margin: "0 0 12px" }}>
+            <h3 style={{ fontFamily: "var(--font-instrument-serif), serif", fontWeight: 400, fontSize: 32, margin: "0 0 12px" }}>
               Thank you, {name.split(" ")[0] || "friend"}!
             </h3>
             <p style={{ fontSize: 15, color: "#6B6357", lineHeight: 1.6, margin: "0 0 6px" }}>
@@ -167,7 +167,7 @@ export default function CheckoutModal({
           </div>
         ) : items.length === 0 ? (
           <div style={{ textAlign: "center", padding: "12px 4px" }}>
-            <h3 style={{ fontFamily: "'Instrument Serif',serif", fontWeight: 400, fontSize: 26, margin: "0 0 10px" }}>
+            <h3 style={{ fontFamily: "var(--font-instrument-serif), serif", fontWeight: 400, fontSize: 26, margin: "0 0 10px" }}>
               Your cart is empty
             </h3>
             <p style={{ fontSize: 14, color: "#6B6357", margin: "0 0 22px" }}>
@@ -187,7 +187,7 @@ export default function CheckoutModal({
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.24em", textTransform: "uppercase", color: "#A15E38" }}>
               Checkout
             </div>
-            <h3 style={{ fontFamily: "'Instrument Serif',serif", fontWeight: 400, fontSize: 28, margin: "10px 0 20px" }}>
+            <h3 style={{ fontFamily: "var(--font-instrument-serif), serif", fontWeight: 400, fontSize: 28, margin: "10px 0 20px" }}>
               Complete your order
             </h3>
 
@@ -210,7 +210,7 @@ export default function CheckoutModal({
             <div style={{ display: "flex", justifyContent: "flex-end", marginTop: -10, marginBottom: 14 }}>
               <button
                 onClick={openCart}
-                style={{ background: "none", border: "none", cursor: "pointer", color: "#A15E38", fontSize: 13, fontFamily: "'Manrope',sans-serif", textDecoration: "underline", padding: 0 }}
+                style={{ background: "none", border: "none", cursor: "pointer", color: "#A15E38", fontSize: 13, fontFamily: "var(--font-manrope), sans-serif", textDecoration: "underline", padding: 0 }}
               >
                 Edit cart
               </button>
@@ -359,7 +359,7 @@ const inputStyle: React.CSSProperties = {
   background: "#F6F1E9",
   borderRadius: 12,
   padding: "13px 16px",
-  fontFamily: "'Manrope',sans-serif",
+  fontFamily: "var(--font-manrope), sans-serif",
   fontSize: 14,
   color: "#26221C",
   outline: "none",
@@ -372,7 +372,7 @@ const primaryBtn: React.CSSProperties = {
   border: "none",
   borderRadius: 999,
   padding: "16px 0",
-  fontFamily: "'Manrope',sans-serif",
+  fontFamily: "var(--font-manrope), sans-serif",
   fontWeight: 700,
   fontSize: 15,
   cursor: "pointer",
